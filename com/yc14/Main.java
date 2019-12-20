@@ -21,9 +21,10 @@ public class Main {
         R3Vector d = f.norm();
         d.out();
         Kub k = new Kub();
-        k.scale(200);
-        k.rotate(45, 30, 90);
+        k.scale(100);
+        k.rotate(225, 225, 0);
         Viewer v= new Viewer(k);
+        Contorller contorller = new Contorller(k,v);
 
     }
 

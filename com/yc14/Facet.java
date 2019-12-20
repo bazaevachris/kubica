@@ -64,14 +64,20 @@ public void rotate(double dx, double dy, double dz){
         t[1]= -k/(vertex[1].getZ()-k);
         t[2]= -k/(vertex[2].getZ()-k);
         t[3]= -k/(vertex[3].getZ()-k);
-        path.moveTo(vertex[0].getX()*t[0], vertex[0].getY()*t[0]);
-        path.lineTo(vertex[1].getX()*t[1], vertex[1].getY()*t[1]);
-        path.lineTo(vertex[2].getX()*t[2], vertex[2].getY()*t[2]);
-        path.lineTo(vertex[3].getX()*t[3], vertex[3].getY()*t[3]);
-        path.lineTo(vertex[0].getX()*t[0], vertex[0].getY()*t[0]);
+        R3Vector vertex1[] = new R3Vector[4];
+        vertex1 [0]= new R3Vector(vertex[0].getX()*t[0], vertex[0].getY()*t[0],vertex[0].getZ()*t[0]);
+        vertex1 [1]= new R3Vector(vertex[1].getX()*t[1], vertex[1].getY()*t[1],vertex[1].getZ()*t[1]);
+        vertex1 [2]= new R3Vector(vertex[2].getX()*t[2], vertex[2].getY()*t[2],vertex[2].getZ()*t[2]);
+        vertex1 [3]= new R3Vector(vertex[3].getX()*t[3], vertex[3].getY()*t[3],vertex[3].getZ()*t[3]);
+        path.moveTo(vertex1[0].getX(), vertex1[0].getY());
+        path.lineTo(vertex1[1].getX(), vertex1[1].getY());
+        path.lineTo(vertex1[2].getX(), vertex1[2].getY());
+        path.lineTo(vertex1[3].getX(), vertex1[3].getY());
+        path.lineTo(vertex1[0].getX(), vertex1[0].getY());
         path.closePath();
-        //g.draw(path);
-        if (light()){
+        Facet facet1 = new Facet(vertex1[0],vertex1[1],vertex1[2],vertex1[3]);
+
+        if (facet1.light()){
             g.setColor(c);
             g.fill(path);
         }
